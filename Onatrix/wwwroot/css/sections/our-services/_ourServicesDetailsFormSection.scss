@@ -11,6 +11,14 @@
 
     .formContainerTitle {
         margin-left: 20px;
+
+        h2 {
+            font-size: 25px;
+
+            @include tablet {
+                font-size: 40px;
+            }
+        }
     }
 
     form {

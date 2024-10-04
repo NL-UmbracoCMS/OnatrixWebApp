@@ -1,7 +1,11 @@
 ﻿#about-us-showcase-section {
     position: relative;
     z-index: 1;
-    padding: 50px;
+    padding: 10px;
+
+    @include tablet {
+        padding: 50px;
+    }
 
     .umb-block-grid__layout-container {
         display: flex;
@@ -26,7 +30,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding-left: 50px;
+
+            @include tablet {
+                padding-left: 50px;
+            }
 
             blockquote {
                 padding-bottom: 30px;

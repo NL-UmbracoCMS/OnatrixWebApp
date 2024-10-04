@@ -1,7 +1,11 @@
 ﻿.our-services {
     position: relative;
     z-index: 1;
-    padding: 50px;
+    padding: 10px;
+
+    @include tablet {
+        padding: 50px;
+    }
 
     .container {
         display: flex;
@@ -11,6 +15,14 @@
 
         .OurServiceText {
             text-align: center;
+
+            h2 {
+                font-size: 25px;
+
+                @include tablet {
+                    font-size: 40px;
+                }
+            }
         }
 
         .OurServiceContent {
