@@ -1,0 +1,55 @@
+
+#home-success-story-section {
+    position: relative;
+    z-index: 1;
+    padding-top: 50px;
+
+    .umb-block-grid__layout-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .homeSuccessStoryText {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: start;
+            text-align: center;
+            padding: 10px;
+
+
+            @include tablet {
+            }
+
+            @include desktop {
+                justify-content: center;
+            }
+
+            @include ultraWide {
+            }
+        }
+
+        .homeSuccessStoryBox {
+            width: 30%;
+            padding-bottom: 20px;
+
+            h3 {
+                font-size: 70px;
+            }
+        }
+    }
+
+    .background-image {
+        position: absolute;
+        top: 100px;
+        left: 25%;
+        z-index: 1;
+        width: 50%;
+    }
+}

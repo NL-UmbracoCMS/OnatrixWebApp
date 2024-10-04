@@ -1,0 +1,47 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+
+@{
+	var sectionTitle = Model?.Content.Value<string>("sectionTitle") ?? "";
+    var sectionId = sectionTitle?.ToString().ToLower().Trim().Replace(" ", "-");
+	var sectionHeadline = Model?.Content.Value<string>("headline") ?? "";
+
+    var sectionBackgroundColorLabel = Model?.Content?.Value<Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor>("sectionBackgroundColor")?.Label.ToLower() ?? null;
+    var sectionBackgroundColorClass = (!string.IsNullOrEmpty(sectionBackgroundColorLabel) && sectionBackgroundColorLabel != "none") ? $"bg-{sectionBackgroundColorLabel}" : "";
+
+
+	var selection = Umbraco.Content(Guid.Parse("617bf81f-d19e-4629-b68d-d76f31912442"))
+    .ChildrenOfType("projectItemDetailPage")
+    .Where(x => x.IsVisible()).Take(4);
+}
+
+<section class="@sectionId @sectionBackgroundColorClass">
+	<div class="homeOurProjectText">
+		<h6>@sectionTitle</h6>
+		<h2>@sectionHeadline</h2>
+	</div>
+		<div class="homeOurProjectContent">
+			@if (selection != null) 
+			{
+				@foreach (var item in selection)
+				{
+					var projectDetailImage = item?.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "";
+
+					<div class="homeOurProjectBox bg-light">
+						<a href="@item.Url()">							
+							<img src="@projectDetailImage" alt="@item.Name()">	
+								<div class="homeOurProjectBoxText">
+									<h6>@item.Name()</h6>
+									<p>Financial Services</p>								
+								</div>
+								<div class="homeOurProjectIconBox">
+										<i class="fa-solid fa-chevron-right"></i>
+								</div>													
+						</a>
+					</div>							
+				}
+			}
+		</div>
+</section>

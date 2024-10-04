@@ -1,0 +1,83 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle") ?? null;
+	var customHeadline = Model?.Value("customHeadline") ?? null;
+	
+	var selection = Umbraco.Content(Guid.Parse("96dc419c-4d3c-4f7c-905e-b1e48783b1b5"))
+    .ChildrenOfType("serviceItemDetailPage")
+    .Where(x => x.IsVisible());
+
+	var itemsPerPage = 6;
+	if(!int.TryParse(Context.Request.Query["page"], out int currentPage)) 
+	{
+		currentPage = 1;
+	}
+	var totalItems = selection?.Count() ?? 0;
+	var pagedItems = selection?.Skip((currentPage - 1) * itemsPerPage).Take(itemsPerPage);
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Title)) 
+{
+	@await Html.PartialAsync("partials/static/breadcrumb.cshtml")
+}
+
+<section class="our-services bg-gray">
+	<div class="container">
+		<div class="OurServiceText">
+			<h6>@Model.Value("pageTitle")</h6>
+			<h2>@customHeadline</h2>
+		</div>
+			<div class="OurServiceContent">
+				@if (itemsPerPage != null) 
+				{
+					@foreach (var item in pagedItems)
+					{
+						var serviceDetailImage = item?.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "";
+						var serviceItemText = item?.Value<string>("serviceItemText") ?? "";
+
+						<div class="onatrixServiceBox bg-light">
+							<a href="@item.Url()">
+								<h4>@item.Name()</h4>
+								<img src="@serviceDetailImage" alt="@item.Name()">
+								<p>@serviceItemText</p>
+							</a>
+						</div>							
+					}
+				}
+			</div>
+
+		<div class="pagnation">
+			@if (currentPage > 1) 
+			{
+				<a href="?page=@(currentPage - 1)" class="change">PREV</a>
+			}
+
+			else 
+			{
+				<span class="change inactive">PREV</span>
+			}
+
+			<ul class="pages">
+				@for (int i = 1; i <= Math.Ceiling((decimal)totalItems / itemsPerPage); i++) 
+				{
+					<li class="@(i == currentPage ? "number active" : "number")">
+						<a href="?page=@i">@i</a>
+					</li>
+				}
+			</ul>
+
+			@if (currentPage < Math.Ceiling((decimal)totalItems / itemsPerPage)) 
+			{
+				<a href="?page=@(currentPage + 1)" class="change">NEXT</a>
+			}
+
+			else 
+			{
+				<span class="change inactive">NEXT</span>
+			}
+		</div>
+	</div>
+</section>
+@await Html.PartialAsync("partials/static/contactInfoSection.cshtml")

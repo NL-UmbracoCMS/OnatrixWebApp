@@ -1,0 +1,58 @@
+.our-services {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .homeOurServiceText {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 70%;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .homeOurServiceContent {
+            display: grid;
+            gap: 10px;
+            padding-bottom: 50px;
+
+            @include tablet {
+                grid-template-columns: auto auto;
+            }
+
+            @include desktop {
+                text-align: center;
+                grid-template-columns: auto auto auto;
+            }
+
+            @include ultraWide {
+                grid-template-columns: auto auto auto;
+            }
+
+            .onatrixServiceBox {
+                display: flex;
+                flex-direction: column;
+                justify-self: center;
+                width: 100%;
+                margin: 0;
+
+                h5 {
+                    padding: 10px;
+                }
+
+                p {
+                    padding: 10px;
+                }
+            }
+        }
+    }
+}

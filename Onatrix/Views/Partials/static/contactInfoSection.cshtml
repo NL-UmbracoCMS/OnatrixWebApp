@@ -1,0 +1,55 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+
+@using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
+
+@inject IPublishedValueFallback PublishedValueFallback
+@inject IPublishedUrlProvider PublishedUrlProvider
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+@{
+    var rootContent = UmbracoHelper.ContentAtRoot();
+    var settings = rootContent?.FirstOrDefault(x => x.ContentType.Alias == "settingsPage") ?? null;
+    var officeLocation = settings?.Value<string>("officeLocation") ?? "";
+    var officePhone = settings?.Value<string>("officePhone") ?? "";
+    var officeEmailAddress = settings?.Value<string>("officeEmailAddress") ?? "";  
+
+    var contactInfoImage = UmbracoHelper.Media("a2e192d1-c6c1-4425-8dee-1907d588131a").Url();
+    var contactInfoImageBackground = UmbracoHelper.Media("ad7069b3-05c9-4332-9fb0-87236c83ea11").Url();
+    var contactInfoSectionImageBackground = UmbracoHelper.Media("da3592d5-4883-43a6-9f17-6179e1ab60ef").Url();
+    
+}
+
+<section class="contactUsSection bg-gray">
+
+    <div class="contactInfoImgContainer">
+        <img id="contactInfoImage" src="@contactInfoImage"/>
+        <img id="contactInfoImageBackground" src="@contactInfoImageBackground"/>
+        <img id="contactInfoSectionImageBackground" src="@contactInfoSectionImageBackground"/>
+    </div>
+
+    <div class="contactInfoTextContainer">
+        <h2>Let us know about your next project</h2>
+        <div class="contactInfoTextBox">
+            <h5><i class="fa-solid fa-location-dot"></i>Office location</h5>
+            <p>@officeLocation</p>
+        </div>
+        <div class="contactInfoTextBox">
+            <h5><i class="fa-solid fa-phone-flip"></i>Phone number</h5>
+            <p>@officePhone</p>
+        </div>
+        <div class="contactInfoTextBox">
+            <h5><i class="fa-regular fa-envelope"></i>E-mail address</h5>
+            <p>@officeEmailAddress</p>
+        </div>
+    </div>
+</section>
+
+
+
+

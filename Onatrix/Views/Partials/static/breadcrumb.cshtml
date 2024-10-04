@@ -1,0 +1,51 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@inject IPublishedUrlProvider PublishedUrlProvider
+
+@{
+    var leftImage = UmbracoHelper.Media("b5c6c047-0663-4320-9ece-a1dc284114de");
+    var rightImage = UmbracoHelper.Media("6f9eda2d-20f3-4f9b-a571-8e15e6595ac0");
+
+    var selection = Model.Ancestors().ToArray();
+    var homePageName = "Home";
+    var isFirstItem = true;
+    var pageTitle = Model.Value("pageTitle");
+}
+
+
+<section id="breadcrumbSection" class="bg-gray">
+    @if (leftImage != null)
+    {
+        <img id="breadcrumb-bg-left" class="breadcrumb-bg" src="@leftImage.Url()" alt="@leftImage.Name" />
+    }
+
+    <div class="container">
+        @if (pageTitle != null) {
+            <h2>@pageTitle</h2>
+        }
+        else {
+            <h2>@Model.Name</h2>
+        }
+        
+        @if (selection?.Length > 0)
+        {
+            <ul class="breadcrumb">
+                @foreach (var item in selection.OrderBy(x => x.Level))
+                {
+                    var pageName = isFirstItem ? homePageName : item.Name;
+                    <li><a href="@item.Url(PublishedUrlProvider)">@pageName</a></li>
+                    <i class="fa-solid fa-angle-right"></i>
+                    isFirstItem = false;
+                }
+                <li class="active">@Model.Name</li>
+            </ul>
+        }
+    </div>
+
+    @if (rightImage != null)
+    {
+        <img id="breadcrumb-bg-right" class="breadcrumb-bg" src="@rightImage.Url()" alt="@rightImage.Name" />
+    }
+</section>

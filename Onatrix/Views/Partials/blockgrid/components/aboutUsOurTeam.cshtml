@@ -1,0 +1,43 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var aboutUsOurTeamItem = Model.Content.Value<IEnumerable<Umbraco.Cms.Core.Models.Blocks.BlockListItem>>("aboutUsOurTeamItem");
+    var aboutUsOurTeamBigBoxItem = aboutUsOurTeamItem.Take(3);
+    var aboutUsOurTeamSmalBoxItem = aboutUsOurTeamItem.Skip(3);
+}
+
+@if (aboutUsOurTeamItem != null) {
+    <div class="aboutUsOurTeam">
+        <div class="aboutUsOurTeamBigBox">
+            @foreach (var item in aboutUsOurTeamBigBoxItem) {
+
+                var aboutUsOurTeamImage = item?.Content.Value<IPublishedContent>("aboutUsOurTeamImage")?.Url();
+                var aboutUsOurTeamMainText = item?.Content.Value<string>("aboutUsOurTeamMainText") ?? "";
+                var aboutUsOurTeamSubText = item?.Content.Value<string>("aboutUsOurTeamSubText") ?? null;
+                
+                <div class="aboutUsOurTeamBox">
+                    <img src="@aboutUsOurTeamImage" alt="@aboutUsOurTeamMainText"/>
+                    <h5>@aboutUsOurTeamMainText</h5>
+                    <p>@aboutUsOurTeamSubText</p>
+                </div>
+            }
+        </div>
+
+        <div class="aboutUsOurTeamSmalBox">
+            @foreach (var item in aboutUsOurTeamSmalBoxItem) {
+
+                var aboutUsOurTeamImage = item?.Content.Value<IPublishedContent>("aboutUsOurTeamImage")?.Url();
+                var aboutUsOurTeamMainText = item?.Content.Value<string>("aboutUsOurTeamMainText") ?? "";
+                var aboutUsOurTeamSubText = item?.Content.Value<string>("aboutUsOurTeamSubText") ?? null;
+                
+                <div class="aboutUsOurTeamBox">
+                        <img src="@aboutUsOurTeamImage" alt="@aboutUsOurTeamMainText"/>
+                        <h5>@aboutUsOurTeamMainText</h5>
+                        <p>@aboutUsOurTeamSubText</p>
+                </div>
+            }
+        </div>
+    </div>
+} 

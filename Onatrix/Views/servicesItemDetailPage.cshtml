@@ -1,0 +1,104 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle");
+	
+	bool.TryParse(ViewData["error_email"]?.ToString()!, out bool error_email);
+	bool.TryParse(ViewData["error_emailBig"]?.ToString()!, out bool error_emailBig);
+	bool.TryParse(ViewData["error_userName"]?.ToString()!, out bool error_userName);
+	bool.TryParse(ViewData["error_message"]?.ToString()!, out bool error_message);
+	var successMessageBig = TempData["SuccessBig"]?.ToString();
+	var successMessage = TempData["Success"]?.ToString();
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Title)) {
+	@await Html.PartialAsync("partials/static/breadcrumb.cshtml")
+}
+
+<section class="service-details">
+	<aside id="asideSection">
+		@await Html.PartialAsync("partials/static/aboutUsServiceDetailPage.cshtml")
+
+		<div id="contactSmalFormSection">
+			<div class="formContainerTitle">
+				<h3>How can we help you?</h3>
+				<p>online support 24/7, we are here to help you</p>
+			</div>
+			
+			@using (Html.BeginUmbracoForm("HandleSubmit", "ContactSurface", FormMethod.Post))
+			{
+				<div class="form-input-group">
+					<input id="email" name="email" type="email" placeholder="Email address" class="form-input">
+					@if (error_email)
+					{
+						<span class="form-input-error">You must enter a valid email</span>
+					}
+					@if (!string.IsNullOrEmpty(successMessage))
+					{
+						<span class="success-message">
+							<p>@successMessage</p>
+						</span>
+					}
+				</div>
+				<div class="form-input-group">
+					<button type="submit" class="form-button btn-submit">Send</button>
+				</div>
+			}
+		</div>
+	</aside>
+
+	<div class="container">
+		@Model.Value("pageContent")
+	</div>
+</section>
+
+<section id="serviceDetailsFormSection">
+	<div class="formContainerTitle">
+		<h2>Have a question ?</h2>
+	</div>
+	
+	@using (Html.BeginUmbracoForm("HandleBigSubmit", "ContactSurface", FormMethod.Post))
+	{
+		<div class="form-input-group-row1">
+			<div class="nameContainer">
+				<input id="userName" name="userName" type="Text" placeholder="Name" class="form-input">
+				@if (error_userName)
+				{
+					<span class="form-input-error">You must enter name</span>
+				}
+			</div>
+			
+			<div class="emailContainer">
+				<input id="email" name="email" type="email" placeholder="Email address" class="form-input">
+				@if (error_emailBig)
+				{
+					<span class="form-input-error">You must enter a valid email</span>
+				}
+			</div>
+
+		</div>
+
+		<div class="form-input-group-message">
+			<div class="messageContainer">
+				<input id="message" name="message" type="Text" placeholder="Enter your message" class="form-input">
+				@if (error_message)
+				{
+					<span class="form-input-error">You must enter a message</span>
+				}
+			</div>
+			
+		</div>
+		<div class="form-input-group">
+			<button type="submit" class="form-button btn-submit">Send</button>
+		</div>
+	}
+	@if (!string.IsNullOrEmpty(successMessageBig))
+	{
+		<span class="success-message">
+			<p>@successMessageBig</p>
+		</span>
+	}
+</section>
+
+@await Html.PartialAsync("partials/static/contactInfoSection.cshtml")

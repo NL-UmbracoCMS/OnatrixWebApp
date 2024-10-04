@@ -1,0 +1,100 @@
+
+.our-projects {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+
+    .homeOurProjectText {
+        display: flex;
+        flex-direction: column;
+        padding-top: 50px;
+        text-align: center;
+
+        @include desktop {
+            text-align: left;
+            align-self: start;
+            margin-left: 400px;
+        }
+    }
+
+    .homeOurProjectContent {
+        @include grid;
+        grid-template-columns: auto auto;
+        gap: 10px;
+
+        @include desktop {
+            grid-template-columns: auto auto auto auto;
+            gap: 0;
+        }
+
+        .homeOurProjectBox {
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+            .homeOurProjectIconBox {
+                display: none;
+
+                @include tablet {
+                    display: block;
+                    position: absolute;
+                    z-index: 2;
+                    font-size: 40px;
+                    bottom: 30px;
+                    top: 85%;
+                    right: 40px;
+                    transition: all 0.3s ease-in-out;
+
+                    &:hover {
+                        transform: scale(1.50);
+                    }
+
+                    i {
+                        color: white;
+                    }
+                }
+
+                @include ultraWide {
+                    top: 80%;
+                }
+            }
+
+            .homeOurProjectBoxText {
+                position: absolute;
+                width: 100%;
+                z-index: 1;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                background-color: var(--color-primarymain-light-rgb);
+                text-align: center;
+                color: var(--color-light);
+
+                &:hover {
+                    background-color: var(--color-primarymain);
+                    color: var(--color-light);
+                }
+
+                h4 {
+                    color: var(--color-secondary);
+                }
+
+                @include tablet {
+                    text-align: left;
+                    right: 0;
+                    left: 0;
+                    bottom: 0;
+                    padding: 30px 0px 20px 20px;
+                }
+
+                @include ultraWide {
+                    top: 70%;
+                    padding: 50px 0px 20px 20px;
+                }
+            }
+        }
+    }
+}

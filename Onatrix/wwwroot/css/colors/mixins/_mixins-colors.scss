@@ -1,0 +1,96 @@
+@mixin buttons-colors($bg-color, $text-color, $hover-bg-color, $hover-text-color, $border-color: null, $border-hover-color: null) {
+    background-color: var($bg-color);
+    color: var($text-color);
+    border-color: if($border-color, var($border-color), var($bg-color));
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgb(0, 0, 0, 0);
+    outline: none !important;
+
+    &:hover {
+        background-color: var($hover-bg-color);
+        color: var($hover-text-color);
+        border-color: if($border-hover-color, var($border-hover-color), var($hover-bg-color));
+    }
+
+    &:hover, &:focus, &:active {
+        background-color: var($hover-bg-color);
+        color: var($hover-text-color);
+    }
+}
+
+@mixin theme-buttons($bg-color, $btn-dark-colors, $btn-primarymain-colors, $btn-secondary-colors, $btn-accent-colors, $btn-gray-colors, $btn-light-colors, $btn-menu-colors) {
+    .bg-#{$bg-color} {
+        .btn-dark {
+            @include buttons-colors($btn-dark-colors...)
+        }
+
+        .btn-primarymain {
+            @include buttons-colors($btn-primarymain-colors...)
+        }
+
+        .btn-secondary {
+            @include buttons-colors($btn-secondary-colors...)
+        }
+        .btn-accent {
+            @include buttons-colors($btn-accent-colors...)
+        }
+        .btn-gray {
+            @include buttons-colors($btn-gray-colors...)
+        }
+        .btn-light {
+            @include buttons-colors($btn-light-colors...)
+        }
+        .btn-menu {
+            @include buttons-colors($btn-menu-colors...)
+        }
+    }
+}
+
+@mixin heading-colors($h1-color, $h2-color, $h3-color, $h4-color, $h5-color, $h6-color) {
+    h1 {
+        color: var($h1-color);
+    } 
+
+    h2 {
+        color: var($h2-color);
+    } 
+
+    h3 {
+        color: var($h3-color);
+    } 
+
+    h4 {
+        color: var($h4-color);
+    } 
+
+    h5 {
+        color: var($h5-color);
+    }
+
+    h6 {
+        color: var($h6-color);
+    }   
+     
+}
+
+@mixin theme-headings($bg-color, $h1-color, $h2-color, $h3-color, $h4-color, $h5-color, $h6-color) {
+    .bg-#{$bg-color} {
+        @include heading-colors($h1-color, $h2-color, $h3-color, $h4-color, $h5-color, $h6-color);
+    }    
+}
+
+@mixin link-colors($link-color, $hover-color) {
+    a {
+        color: var($link-color);
+
+        &:hover, &:focus, &:active {
+            color: var($hover-color)
+        }
+    }
+}
+
+@mixin theme-links($bg-color, $link-color, $hover-color) {
+    .bg-#{$bg-color} {
+        @include link-colors($link-color, $hover-color);
+    }
+}

@@ -1,0 +1,100 @@
+
+.btn-dark {
+    @include buttons-colors(--color-dark, --color-light, --color-accent,  --color-primarymain);
+}
+
+.btn-primarymain {
+    @include buttons-colors(--color-primarymain, --color-secondary, --color-accent, --color-primarymain);
+}
+
+.btn-secondary {
+    @include buttons-colors(--color-secondary, --color-primarymain, --color-accent, --color-primarymain);
+}
+
+.btn-accent {
+    @include buttons-colors(--color-accent, --color-primarymain, --color-primarymain, --color-secondary);
+}
+
+.btn-gray {
+    @include buttons-colors(--color-gray, --color-primarymain, --color-accent, --color-primarymain);
+}
+
+.btn-light {
+    @include buttons-colors(--color-light, --color-primarymain, --color-accent, --color-primarymain, --color-primarymain);
+}
+
+.btn-menu {
+    @include buttons-colors(--color-primarymain, --color-secondary, --color-accent, --color-primarymain);
+}
+
+@include theme-buttons
+(
+    'dark',
+    (--color-dark, --color-light, --color-accent, --color-primarymain,--color-border-light),
+    (--color-primarymain, --color-secondary, --color-accent, --color-primarymain, --color-primarymain),
+    (--color-secondary, --color-primarymain, --color-light, --color-primarymain, --color-secondary),
+    (--color-accent, --color-primarymain, --color-primarymain, --color-secondary, --color-light),
+    (--color-gray, --color-primarymain, --color-accent, --color-primarymain, --color-light),
+    (--color-light, --color-primarymain, --color-accent, --color-primarymain, --color-light),
+    (--color-light, --color-primarymain, --color-accent, --color-primarymain, --color-light)
+);
+
+@include theme-buttons
+(
+    'primarymain',
+    (--color-dark, --color-light, --color-accent, --color-primarymain,--color-border-dark),
+    (--color-primarymain, --color-secondary, --color-accent, --color-primarymain, --color-border-secondary),
+    (--color-secondary, --color-primarymain, --color-light, --color-primarymain, --color-secondary),
+    (--color-accent, --color-primarymain, --color-dark, --color-secondary, --color-light),
+    (--color-gray, --color-primarymain, --color-accent, --color-primarymain, --color-light),
+    (--color-light, --color-primarymain, --color-accent, --color-primarymain, --color-light),
+    (--color-light, --color-primarymain, --color-accent, --color-primarymain, --color-light)
+);
+
+@include theme-buttons
+(
+    'secondary',
+    (--color-dark, --color-light, --color-gray, --color-primarymain,--color-border-dark),
+    (--color-primarymain, --color-secondary, --color-gray, --color-primarymain, --color-border-secondary),
+    (--color-gray, --color-primarymain, --color-light, --color-primarymain, --color-border-primarymain),
+    (--color-primarymain, --color-gray, --color-dark, --color-secondary, --color-light),
+    (--color-gray, --color-primarymain, --color-primarymain, --color-dark, --color-light),
+    (--color-light, --color-primarymain, --color-accent, --color-primarymain, --color-border-primarymain, --color-hover-dark),
+    (--color-light, --color-primarymain, --color-accent, --color-primarymain, --color-light, --color-hover-dark)
+);
+
+@include theme-buttons
+(
+    'accent',
+    (--color-dark, --color-light, --color-gray, --color-primarymain,--color-border-dark),
+    (--color-primarymain, --color-secondary, --color-gray, --color-primarymain, --color-border-secondary),
+    (--color-gray, --color-primarymain, --color-light, --color-primarymain, --color-border-primarymain),
+    (--color-primarymain, --color-gray, --color-dark, --color-secondary, --color-light),
+    (--color-gray, --color-primarymain, --color-primarymain, --color-dark, --color-light),
+    (--color-light, --color-primarymain, --color-accent, --color-primarymain, --color-border-primarymain, --color-hover-dark),
+    (--color-light, --color-primarymain, --color-accent, --color-primarymain, --color-light, --color-dark)
+);
+
+@include theme-buttons
+(
+    'light',
+    (--color-dark, --color-light, --color-accent, --color-primarymain,--color-border-light),
+    (--color-primarymain, --color-secondary, --color-accent, --color-primarymain, --color-primarymain),
+    (--color-secondary, --color-primarymain, --color-dark, --color-primarymain, --color-secondary),
+    (--color-accent, --color-primarymain, --color-primarymain, --color-secondary, --color-light),
+    (--color-primarymain, --color-gray, --color-accent, --color-primarymain, --color-light),
+    (--color-secondary, --color-primarymain, --color-primarymain, --color-gray, --color-light),
+    (--color-secondary, --color-primarymain, --color-accent, --color-primarymain, --color-dark)
+);
+
+@include theme-buttons
+(
+    'gray',
+    (--color-dark, --color-light, --color-accent, --color-primarymain,--color-border-light),
+    (--color-primarymain, --color-secondary, --color-accent, --color-primarymain, --color-primarymain),
+    (--color-secondary, --color-primarymain, --color-dark, --color-primarymain, --color-secondary),
+    (--color-accent, --color-primarymain, --color-primarymain, --color-secondary, --color-light),
+    (--color-primarymain, --color-gray, --color-accent, --color-primarymain, --color-light),
+    (--color-light, --color-primarymain, --color-accent, --color-primarymain, --color-dark),
+    (--color-light, --color-primarymain, --color-accent, --color-primarymain, --color-dark)
+);

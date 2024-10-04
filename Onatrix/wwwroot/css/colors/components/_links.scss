@@ -1,0 +1,50 @@
+
+
+@include link-colors
+(
+    --color-secondary,
+    --color-primarymain
+);
+
+@include theme-links
+(
+    'dark',
+    --color-accent,
+    --color-light
+);
+
+@include theme-links
+(
+    'primarymain',
+    --color-secondary,
+    --color-gray
+);
+
+@include theme-links
+(
+    'secondary',
+    primarymain,
+    --color-dark
+);
+
+@include theme-links
+(
+    'accent',
+    --color-dark,
+    --color-primarymain
+);
+
+@include theme-links
+(
+    'light',
+    --color-dark,
+    --color-accent
+
+);
+
+@include theme-links
+(
+    'gray',
+    --color-dark,
+    --color-primarymain
+);

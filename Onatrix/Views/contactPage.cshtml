@@ -1,0 +1,37 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContactPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "mainLayout.cshtml";
+    ViewBag.Title = Model?.Value("pageTitle") ?? null;
+    var successMessage = TempData["SuccessBig"]?.ToString();
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Title)) 
+{
+    @await Html.PartialAsync("partials/static/breadcrumb.cshtml")
+    @await Html.PartialAsync("partials/static/contactInfoSection.cshtml")
+    @await Html.GetBlockGridHtmlAsync(Model?.Layout) 
+}
+
+<section id="contactFormSection">
+    <div class="formContainerTitle">
+        <h6>Request a call back</h6>
+        <h2>Let us know about your next project</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consectetur, ligula semper sagittis lobortis, eros metus efficitur purus</p>
+    </div>
+    
+    @using (Html.BeginUmbracoForm("HandleBigSubmit", "ContactSurface", FormMethod.Post, new { novalidate = "novalidate" }))
+    {
+        @await Html.GetBlockListHtmlAsync(Model?.ContactForm)
+    }
+    @if (!string.IsNullOrEmpty(successMessage))
+    {
+        <span class="success-message">
+            <p>@successMessage</p>
+        </span>
+    }
+</section>
+
+
+  

@@ -1,0 +1,50 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+
+@using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
+
+@inject IPublishedValueFallback PublishedValueFallback
+@inject IPublishedUrlProvider PublishedUrlProvider
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+@{
+    var rootContent = UmbracoHelper.ContentAtRoot();
+    var settings = rootContent?.FirstOrDefault(x => x.ContentType.Alias == "settingsPage") ?? null;
+    var officeLocation = settings?.Value<string>("officeLocation") ?? "";
+    var officePhone = settings?.Value<string>("officePhone") ?? "";
+    var officeEmailAddress = settings?.Value<string>("officeEmailAddress") ?? "";  
+
+    var contactInfoImage = Model?.Content.Value<IPublishedContent>("contactInfoImage")?.Url() ?? null;
+    var contactInfoImageBackground = Model?.Content.Value<IPublishedContent>("contactInfoImageBackground")?.Url() ?? null;
+    var contactInfoHeadline = Model?.Content.Value<string>("contactInfoHeadline") ?? "";        
+    var contactInfoImageDescription = Model?.Content.Value<string>("contactInfoImageDescription") ?? "";      
+}
+
+<div class="contactInfoImgContainer">
+    <img src="@contactInfoImage" alt="contactInfoImageDescription"/>
+    <img src="@contactInfoImageBackground"/>
+</div>
+
+<div class="contactInfoTextContainer">
+    <div class="contactInfoTextBox">
+        <p><i class="fa-regular fa-location-dot"></i>Office location</p>
+        <p>@officeLocation</p>
+    </div>
+    <div class="contactInfoTextBox">
+        <p><i class="fa-light fa-phone-flip"></i>Phone number</p>
+        <p>@officePhone</p>
+    </div>
+    <div class="contactInfoTextBox">
+        <p><i class="fa-regular fa-envelope"></i>E-mail address</p>
+        <p>@officeEmailAddress</p>
+    </div>
+</div>
+
+
+
+

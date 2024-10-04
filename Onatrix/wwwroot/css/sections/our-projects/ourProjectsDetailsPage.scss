@@ -1,0 +1,133 @@
+﻿.project-details {
+    position: relative;
+    z-index: 1;
+    margin-top: 50px;
+    display: flex;
+
+    .container {
+
+        @include tablet {
+            justify-content: center;
+            border-right: 1px solid gray;
+            padding-right: 50px;
+            margin-right: 50px;
+        }
+
+        .projectDetailsImg {
+            width: 100%;
+            max-height: 800px;
+        }
+
+        .projectDetailsText {
+            padding: 30px 0px 30px 0px;
+
+            p {
+                padding: 10px 0px 10px 0px;
+            }
+        }
+    }
+
+    #asideSection {
+        display: none;
+
+        @include tablet {
+            display: block;
+            padding-right: 50px;
+        }
+
+        @include desktop {
+            display: block;
+            right-left: 150px;
+        }
+
+        .projectDetailAsideContent {
+
+            .projectDetailAsideBox {
+                display: flex;
+                padding-bottom: 10px;
+                width: 300px;
+
+                img {
+                    max-width: 150px;
+                    max-height: 100px;
+                }
+
+                .projectDetailAsideTextBox {
+                    padding-left: 20px;
+
+                    i {
+                        margin-right: 5px;
+                    }
+
+                    h4 {
+                        font-size: 17px;
+                    }
+                }
+            }
+        }
+
+        #tagsSection {
+            margin-top: 30px;
+
+            .tags {
+                display: grid;
+                grid-template-columns: auto auto;
+                text-align: center;
+                align-items: center;
+
+                p {
+                    border: 1px solid var(--color-dark);
+                    border-radius: 20px;
+                    padding: 8px;
+                    margin: 5px;
+                }
+            }
+        }
+
+        #contactSmalFormSection {
+            width: 300px;
+            background-color: var(--color-primarymain);
+            margin-top: 20px;
+
+            .formContainerTitle {
+                padding: 20px;
+
+                h3 {
+                    font-size: 20px;
+                }
+
+                p {
+                    color: var(--color-light);
+                }
+            }
+
+            form {
+                padding: 20px;
+
+                .form-input-group {
+                    display: flex;
+                    flex-direction: column;
+
+                    .form-label {
+                        padding: 5px 0px 5px 0px;
+                    }
+
+                    .form-input {
+                        padding: 5px;
+                    }
+
+                    .form-input-error {
+                        color: red;
+                        padding: 5px 0px 5px 0px;
+                    }
+
+                    .form-button {
+                        @include btn;
+                        margin: 5px 0px 5px 0px;
+                        background-color: var(--color-accent);
+                    }
+                }
+            }
+        }
+    }
+}

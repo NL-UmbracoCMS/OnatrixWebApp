@@ -1,0 +1,61 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ProjectItemDetailPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+	Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle");
+
+	var projectItemTime = Model?.Value<string>("projectItemTime") ?? "";
+	DateTime parsedDate;
+	string projectItemDate = DateTime.TryParse(projectItemTime, out parsedDate) ? parsedDate.ToString("yyyy-MM-dd") : projectItemTime;
+
+	bool.TryParse(ViewData["error_email"]?.ToString()!, out bool error_email);
+	var successMessage = TempData["Success"]?.ToString();
+
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Title)) {
+	@await Html.PartialAsync("partials/static/breadcrumb.cshtml")
+}
+
+<section class="project-details">
+	<div class="container">
+		<p class="projectDateTime">@projectItemDate</p>
+		@Model.Value("pageContent")
+	</div>
+
+	<aside id="asideSection">
+		@await Html.PartialAsync("partials/static/projectDetailsAsideContent.cshtml")
+		@await Html.GetBlockGridHtmlAsync(Model.Layout)
+
+		<div id="contactSmalFormSection">
+			<div class="formContainerTitle">
+				<h3>How can we help you?</h3>
+				<p>online support 24/7, we are here to help you</p>
+			</div>
+			
+			@using (Html.BeginUmbracoForm("HandleSubmit", "ContactSurface", FormMethod.Post))
+			{
+				<div class="form-input-group">
+					<input id="email" name="email" type="email" placeholder="Email address" class="form-input" value="@ViewData["email"]">
+					@if (error_email)
+					{
+						<span class="form-input-error">You must enter a valid email</span>
+					}
+					@if (!string.IsNullOrEmpty(successMessage))
+					{
+						<span class="success-message">
+							<p>@successMessage</p>
+						</span>
+					}
+				</div>
+				<div class="form-input-group">
+					<button type="submit" class="form-button btn-submit">Send</button>
+				</div>
+			}
+		</div>
+
+	</aside>
+</section>
+@await Html.PartialAsync("partials/static/contactInfoSection.cshtml")

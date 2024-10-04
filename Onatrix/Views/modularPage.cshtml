@@ -1,0 +1,41 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ModularPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "mainLayout.cshtml";
+    ViewBag.Title = Model?.Value("pageTitle") ?? null;
+
+    var isHomePage = Model?.Root().Id == Model?.Id;
+    var successMessage = TempData["SuccessBig"]?.ToString();
+}
+
+@if (isHomePage) 
+{
+    @await Html.GetBlockGridHtmlAsync(Model?.Layout)
+
+    <section id="homeContactFormSection" class="bg-primarymain">
+        <div class="formContainerTitle">
+            <h2>Request a call back</h2>
+        </div>
+
+        @using (Html.BeginUmbracoForm("HandleBigSubmit", "ContactSurface", FormMethod.Post, new { novalidate = "novalidate" }))
+        {
+            <p>Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat</p>
+            @await Html.GetBlockListHtmlAsync(Model?.ContactForm)
+        }
+        @if (!string.IsNullOrEmpty(successMessage))
+        {
+            <span class="success-message">
+                <p>@successMessage</p>
+            </span>
+        }
+       
+    </section>
+}
+
+else 
+{
+    @await Html.PartialAsync("partials/static/breadcrumb.cshtml")
+    @await Html.GetBlockGridHtmlAsync(Model?.Layout)
+    @await Html.PartialAsync("partials/static/contactInfoSection.cshtml") 
+}

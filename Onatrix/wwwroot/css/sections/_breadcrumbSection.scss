@@ -1,0 +1,45 @@
+﻿#breadcrumbSection {
+    position: relative;
+    z-index: 1;
+    padding-top: 20px;
+    padding-bottom: 50px;
+
+    #breadcrumb-bg-left {
+        display: none;
+
+        @include desktop {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+    }
+
+    #breadcrumb-bg-right {
+        display: none;
+
+        @include tablet {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            i {
+                padding: 10px;
+            }
+        }
+    }
+}

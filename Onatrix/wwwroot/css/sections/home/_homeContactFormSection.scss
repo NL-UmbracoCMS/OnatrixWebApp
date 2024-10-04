@@ -1,0 +1,71 @@
+﻿#homeContactFormSection {
+    display: none;
+
+    @include tablet {
+        display: block;
+        position: absolute;
+        z-index: 9;
+        top: 40rem;
+        margin-left: 60%;
+        width: 400px;
+    }
+
+    @include desktop {
+        top: 40rem;
+        margin-left: 70rem;
+        width: 450px;
+    }
+
+
+    .formContainerTitle {
+        margin: 20px;
+        text-align: center;
+
+        h2 {
+            color: var(--color-accent);
+
+            @include tablet {
+                font-size: 25px;
+            }
+
+            @include desktop {
+                font-size: 40px;
+            }
+        }
+    }
+
+    form {
+        background-color: var(--color-light);
+        padding: 20px;
+
+        p {
+            color: var(--color-dark);
+        }
+
+        .form-input-group {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+            .form-label {
+                padding: 5px 0px 5px 0px;
+            }
+
+            .form-input {
+                padding: 5px;
+            }
+
+            .form-input-error {
+                color: red;
+                padding: 5px 0px 5px 0px;
+            }
+
+            .form-button {
+                @include btn;
+                margin: 5px 0px 5px 0px;
+                background-color: var(--color-accent);
+            }
+        }
+    }
+}

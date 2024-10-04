@@ -1,0 +1,43 @@
+﻿#about-us-showcase-section {
+    position: relative;
+    z-index: 1;
+    padding: 50px;
+
+    .umb-block-grid__layout-container {
+        display: flex;
+        justify-content: center;
+
+        #aboutUsShowcaseImageBox {
+            display: none;
+
+            @include desktop {
+                display: block;
+                text-align: center;
+
+                p {
+                    padding: 10px;
+                    font-style: italic;
+                }
+            }
+        }
+
+        #aboutUsShowcaseTextBox {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-left: 50px;
+
+            blockquote {
+                padding-bottom: 30px;
+                font-size: 20px;
+                font-style: italic;
+            }
+
+            p {
+                padding-top: 7px;
+                padding-bottom: 7px;
+            }
+        }
+    }
+}

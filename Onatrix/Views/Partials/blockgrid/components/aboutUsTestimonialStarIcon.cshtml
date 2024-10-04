@@ -1,0 +1,20 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var aboutUsTestimonialStarIconItem = Model.Content.Value<IEnumerable<Umbraco.Cms.Core.Models.Blocks.BlockListItem>>("aboutUsTestimonialStarIconItem");
+}
+
+@if (aboutUsTestimonialStarIconItem != null) {
+    <div class="aboutUsTestimonialStarContent">
+        @foreach (var item in aboutUsTestimonialStarIconItem) {
+
+            var aboutUsTestimonialStarIconImage = item?.Content.Value<IPublishedContent>("aboutUsTestimonialStarIconImage")?.Url();
+
+            @if (!string.IsNullOrEmpty(aboutUsTestimonialStarIconImage)) {
+                <img src="@aboutUsTestimonialStarIconImage"/>
+            }
+        }
+    </div>
+} 

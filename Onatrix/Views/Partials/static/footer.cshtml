@@ -1,0 +1,13 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+@{
+    var rootContent = UmbracoHelper.ContentAtRoot();
+    var settings = rootContent?.FirstOrDefault(x => x.ContentType.Alias == "settingsPage") ?? null;
+    var siteName = settings?.Value<string>("siteName") ?? "";
+}
+
+<footer class="bg-dark">
+    <p>© @siteName. All Rights Reserved. Credits to <a href="#">Themesflat</a></p>
+</footer>

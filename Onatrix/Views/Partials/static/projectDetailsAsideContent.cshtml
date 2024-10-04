@@ -1,0 +1,45 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ProjectItemDetailPage>
+
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+
+@using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
+
+@inject IPublishedValueFallback PublishedValueFallback
+@inject IPublishedUrlProvider PublishedUrlProvider
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("617bf81f-d19e-4629-b68d-d76f31912442")).ChildrenOfType("projectItemDetailPage").Where(x => x.IsVisible());
+}
+
+<div class="projectDetailAsideContent">
+    
+    @foreach (var item in selection)
+    {
+        var projectItemImage = item?.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "";
+        var projectItemTime = item?.Value<string>("projectItemTime") ?? "";
+        DateTime parsedDate;
+        string projectItemDate = DateTime.TryParse(projectItemTime, out parsedDate) ? parsedDate.ToString("yyyy-MM-dd") : projectItemTime;
+        
+        <div class="projectDetailAsideBox">
+
+            <a href="@item.Url()">
+                <img src="@projectItemImage" alt="@item.Name()">
+            </a>
+
+            <div class="projectDetailAsideTextBox">
+                <h4>@item.Name()</h4>					
+                <p><i class="fa-regular fa-calendar-days"></i>@projectItemDate</p>
+            </div>
+
+        </div>
+    }
+</div>
+
+

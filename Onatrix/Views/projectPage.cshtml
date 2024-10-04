@@ -1,0 +1,125 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ProjectPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle") ?? null;
+
+	var selection = Umbraco.Content(Guid.Parse("617bf81f-d19e-4629-b68d-d76f31912442"))
+    .ChildrenOfType("projectItemDetailPage")
+    .Where(x => x.IsVisible());
+
+	var itemsPerPage = 4;
+	if(!int.TryParse(Context.Request.Query["page"], out int currentPage)) 
+	{
+		currentPage = 1;
+	}
+	var totalItems = selection?.Count() ?? 0;
+	var pagedItems = selection?.Skip((currentPage - 1) * itemsPerPage).Take(itemsPerPage);
+
+	bool.TryParse(ViewData["error_email"]?.ToString()!, out bool error_email);
+	var successMessage = TempData["Success"]?.ToString();
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Title)) {
+	@await Html.PartialAsync("partials/static/breadcrumb.cshtml")
+}
+
+<section class="OurProjectSection bg-light">
+	<div class="container">
+		<div class="OurProjectText">
+			<h6>@Model.Value("pageTitle")</h6>
+		</div>
+		<div class="OurProjectContent">
+			@if (itemsPerPage != null) {
+				@foreach (var item in pagedItems)
+				{
+					var projectItemImage = item?.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "";
+					var projectItemText = item?.Value<string>("projectItemText") ?? "";
+
+					var projectItemTime = item?.Value<string>("projectItemTime") ?? "";
+    				DateTime parsedDate;
+    				string projectItemDate = DateTime.TryParse(projectItemTime, out parsedDate) ? parsedDate.ToString("yyyy-MM-dd") : projectItemTime;
+
+					<div class="onatrixProjectBox bg-light">
+						<img src="@projectItemImage" alt="@item.Name()">
+						
+						<div class="onatrixProjectTextBox">
+							<h4>@item.Name()</h4>					
+							<p><i class="fa-regular fa-calendar-days"></i>@projectItemDate</p>
+							<p>@projectItemText</p>
+							<a href="@item.Url()"><p>Read more<i class="fa-solid fa-arrow-right"></i></p></a>
+						</div>
+
+					</div>				
+				}
+			}
+
+		</div>
+
+		<div class="pagnation">
+			@if (currentPage > 1) 
+			{
+				<a href="?page=@(currentPage - 1)" class="change">PREV</a>
+			}
+
+			else 
+			{
+				<span class="change inactive">PREV</span>
+			}
+
+			<ul class="pages">
+				@for (int i = 1; i <= Math.Ceiling((decimal)totalItems / itemsPerPage); i++) 
+				{
+					<li class="@(i == currentPage ? "number active" : "number")">
+						<a href="?page=@i">@i</a>
+					</li>
+				}
+			</ul>
+
+			@if (currentPage < Math.Ceiling((decimal)totalItems / itemsPerPage)) 
+			{
+				<a href="?page=@(currentPage + 1)" class="change">NEXT</a>
+			}
+
+			else 
+			{
+				<span class="change inactive">NEXT</span>
+			}
+		</div>
+	</div>
+
+	<aside id="asideSection">
+		@await Html.GetBlockGridHtmlAsync(Model.Layout)
+
+		<div id="contactSmalFormSection">
+			<div class="formContainerTitle">
+				<h3>How can we help you?</h3>
+				<p>online support 24/7, we are here to help you</p>
+			</div>
+			
+			@using (Html.BeginUmbracoForm("HandleSubmit", "ContactSurface", FormMethod.Post))
+			{
+				<div class="form-input-group">
+					<input id="email" name="email" type="email" placeholder="Email address" class="form-input">
+					@if (error_email)
+					{
+						<span class="form-input-error">You must enter a valid email</span>
+					}
+					@if (!string.IsNullOrEmpty(successMessage))
+					{
+						<span class="success-message">
+							<p>@successMessage</p>
+						</span>
+					}
+				</div>
+				<div class="form-input-group">
+					<button type="submit" class="form-button btn-submit">Send</button>
+				</div>
+			}
+		</div>
+
+	</aside>
+	
+</section>
+@await Html.PartialAsync("partials/static/contactInfoSection.cshtml")

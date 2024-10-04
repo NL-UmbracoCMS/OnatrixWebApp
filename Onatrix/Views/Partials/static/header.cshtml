@@ -1,0 +1,83 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
+
+@inject IPublishedValueFallback PublishedValueFallback
+@inject IPublishedUrlProvider PublishedUrlProvider
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+@{
+    var rootContent = UmbracoHelper.ContentAtRoot();
+    var settings = rootContent?.FirstOrDefault(x => x.ContentType.Alias == "settingsPage") ?? null;
+    var officeLocation = settings?.Value<string>("officeLocation") ?? "";
+    var siteName = settings?.Value<string>("siteName") ?? "";
+    var siteLogotype = settings?.Value<IPublishedContent>("siteLogotype")?.Url() ?? "";
+    var socialMediaPlatforms = settings?.Value<IEnumerable<Umbraco.Cms.Core.Models.Blocks.BlockListItem>>("socialMediaPlatforms") ?? null;
+
+    var selection = Model.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray();
+}
+
+
+<header>
+    <div class="container">
+        <div class="headerTop bg-primarymain">
+
+            <div class="headerAddress">
+                <p>@officeLocation</p>
+            </div>
+
+            <div class="headerSocial">
+                @if (socialMediaPlatforms != null) {
+
+                    @foreach (var item in socialMediaPlatforms) {
+
+                        var platformName = item?.Content?.Value<string>("platformName");
+                        var platformUrl = item?.Content?.Value<string>("platformUrl") ?? "#";
+
+                        switch(platformName.ToLower()) {
+
+                            case "facebook":
+                                <a href="@platformUrl" title="@platformName" target="_blank"><i class="fa-brands fa-facebook-f bg-primaryMain"></i></a>
+                                break;
+
+                            case "linkedin":
+                                <a href="@platformUrl" title="@platformName" target="_blank"><i class="fa-brands fa-linkedin-in bg-primaryMain"></i></a>
+                                break;
+
+                            case "x":
+                                <a id="lastIconSocial" href="@platformUrl" title="@platformName" target="_blank"><i class="fa-brands fa-twitter bg-primaryMain"></i></a>
+                                break;
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div class="headerMain bg-light">
+            <a id="headerLogoContainer" href="/"><img src="@siteLogotype" alt="@siteName"></a>
+            <nav>
+                @if (selection?.Length > 0)
+                {
+                    <nav class="nav-menu">
+                        @foreach (var item in selection)
+                        {
+                            <a class="@(item.IsAncestorOrSelf(Model) ? "active" : "nav-link")" href="@item.Url(PublishedUrlProvider)">@item.Name</a>
+                        }
+                    </nav>
+
+                    <div class="btn-menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                }
+            </nav>
+            <div class="headerSearch">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+

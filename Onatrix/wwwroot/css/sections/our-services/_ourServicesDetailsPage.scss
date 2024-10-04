@@ -1,0 +1,95 @@
+﻿.service-details {
+    position: relative;
+    z-index: 1;
+    margin-top: 50px;
+    display: flex;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+
+
+        @include tablet {
+            justify-content: center;
+            border-left: 1px solid gray;
+            padding-left: 50px;
+            margin-left: 50px;
+        }
+
+        .serviceDetailsImg {
+            width: 100%;
+        }
+
+        .serviceDetailsText {
+            padding: 30px 0px 30px 0px;
+
+            p {
+                padding: 10px 0px 10px 0px;
+            }
+        }
+    }
+
+    #asideSection {
+        display: none;
+
+        @include tablet {
+            display: block;
+            padding-left: 50px;
+        }
+
+        @include desktop {
+            display: block;
+            padding-left: 150px;
+        }
+
+        .aboutUsServiceDetailAsideContent {
+            width: 300px;
+        }
+
+        #contactSmalFormSection {
+            width: 300px;
+            background-color: var(--color-primarymain);
+            margin-top: 20px;
+
+            .formContainerTitle {
+                padding: 20px;
+
+                h3 {
+                    font-size: 20px;
+                }
+
+                p {
+                    color: var(--color-light);
+                }
+            }
+
+            form {
+                padding: 20px;
+
+                .form-input-group {
+                    display: flex;
+                    flex-direction: column;
+
+                    .form-label {
+                        padding: 5px 0px 5px 0px;
+                    }
+
+                    .form-input {
+                        padding: 5px;
+                    }
+
+                    .form-input-error {
+                        color: red;
+                        padding: 5px 0px 5px 0px;
+                    }
+
+                    .form-button {
+                        @include btn;
+                        margin: 5px 0px 5px 0px;
+                        background-color: var(--color-accent);
+                    }
+                }
+            }
+        }
+    }
+}

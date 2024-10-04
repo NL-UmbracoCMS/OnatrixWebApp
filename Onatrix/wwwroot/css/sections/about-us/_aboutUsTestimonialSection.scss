@@ -1,0 +1,58 @@
+﻿#about-us-testimonial {
+    position: relative;
+    z-index: 1;
+    padding: 0px 0px 50px 0px;
+
+    @include desktop {
+        padding: 0px 0px 200px 0px;
+    }
+
+    .umb-block-grid__layout-container {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding-top: 50px;
+
+        @include desktop {
+            text-align: left;
+            justify-content: left;
+        }
+
+        .umb-block-grid__layout-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            .umb-block-grid__layout-item {
+                width: 100%;
+
+                @include desktop {
+                    width: 50%;
+                }
+
+                p {
+                    padding: 5px 0px 5px 0px;
+                }
+
+                .aboutUsTestimonialStarContent {
+                    padding: 5px 0px 5px 0px;
+                }
+            }
+        }
+    }
+
+    .background-image {
+        display: none;
+
+        @include desktop {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            z-index: 1;
+            object-fit: cover;
+        }
+    }
+}

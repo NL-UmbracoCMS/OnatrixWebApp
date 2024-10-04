@@ -1,0 +1,14 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+
+@{
+    var aboutUsShowcaseQuote = Model?.Content.Value<string>("aboutUsShowcaseQuote") ?? "";
+    var aboutUsShowcaseText = Model?.Content.Value<string>("aboutUsShowcaseText") ?? "";
+}
+
+<div id="aboutUsShowcaseTextBox">
+    <blockquote>@aboutUsShowcaseQuote</blockquote>
+    <div>@Html.Raw(aboutUsShowcaseText)</div>
+</div>

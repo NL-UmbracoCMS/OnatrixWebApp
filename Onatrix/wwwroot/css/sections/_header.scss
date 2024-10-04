@@ -1,0 +1,135 @@
+header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--color-gray);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+
+        .headerTop {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            .headerSocial {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+
+                a {
+                    text-decoration: none;
+                }
+
+                i {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 50px;
+                    padding: 10px;
+                    color: var(--color-light);
+                    border-left: 1px solid var(--color-gray);
+
+                    &:hover {
+                        color: var(--color-dark);
+                    }
+                }
+
+                #lastIconSocial {
+                    border-right: 1px solid var(--color-gray);
+                }
+            }
+        }
+
+        .headerMain {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            .nav-menu {
+                display: none;
+
+                @include tablet {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-right: 9rem;
+
+                    a {
+                        padding: 20px;
+                    }
+                }
+
+                &.active {
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    top: 110px;
+                    right: 10px;
+                    background-color: var(--color-primaryMain);
+                    padding: 20px;
+                    border-radius: 20px;
+
+                    a {
+                        color: var(--color-dark);
+                    }
+
+
+                    @include tablet {
+                        display: none;
+                    }
+                }
+            }
+
+            .btn-menu {
+                position: relative;
+                display: flex;
+                margin-right: 35px;
+
+                @include tablet {
+                    display: none;
+                }
+            }
+
+            img {
+                margin-left: 35px;
+
+                @include tablet {
+                    margin-left: 5rem;
+                }
+
+                @include desktop {
+                    margin-left: 14rem;
+                }
+
+                @include ultraWide {
+                    margin-left: 22rem;
+                }
+            }
+
+            .headerSearch {
+                display: none;
+
+                @include tablet {
+                    display: block;
+                    margin-right: 10rem;
+                }
+
+                @include desktop {
+                    margin-right: 14rem;
+                }
+
+                @include ultraWide {
+                    margin-right: 22rem;
+                }
+            }
+        }
+    }
+}

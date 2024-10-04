@@ -1,0 +1,24 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var homeSucessStoryBox = Model.Content.Value<IEnumerable<Umbraco.Cms.Core.Models.Blocks.BlockListItem>>("homeSuccessStoryBoxItem");
+}
+
+@if (homeSucessStoryBox != null) {
+    <div class="homeSuccessStoryText">
+        @foreach (var item in homeSucessStoryBox) {
+
+            var homeSuccessStoryBoxNumber = item?.Content.Value<string>("homeSuccessStoryBoxNumber") ?? "";
+            var homeSuccessStoryBoxText = item?.Content.Value<string>("homeSuccessStoryBoxText") ?? null;
+
+            @if (!string.IsNullOrEmpty(homeSuccessStoryBoxNumber)) {
+                <div class="homeSuccessStoryBox">
+                    <h3>@homeSuccessStoryBoxNumber</h3>
+                    <p>@homeSuccessStoryBoxText</p>
+                </div>
+            }
+        }
+    </div>
+} 

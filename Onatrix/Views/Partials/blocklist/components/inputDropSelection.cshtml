@@ -1,0 +1,24 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@using Umbraco.Cms.Core.Models.Blocks;
+
+@{
+    var uniqueName = Model?.Content.Value<string>("uniqueName");
+
+    var categoryList = Model?.Content.Value<BlockListModel>("categoryName");
+}
+
+<div id="_@uniqueName" class="form-input-group">
+    <select id="@uniqueName" name="@uniqueName" class="form-select">
+        @if (categoryList != null && categoryList.Any())
+        {
+            @foreach (var block in categoryList)
+            {
+                var category = block.Content.Value<string>("categoryName");
+                <option value="@category">@category</option>
+            }
+        }
+    </select>
+</div>

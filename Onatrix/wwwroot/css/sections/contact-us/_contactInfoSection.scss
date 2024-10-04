@@ -1,0 +1,70 @@
+﻿.contactUsSection {
+    position: relative;
+    padding-bottom: 5.3rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .contactInfoImgContainer {
+        display: none;
+
+        @include tablet {
+            display: block;
+            position: relative;
+            height: 500px;
+
+            #contactInfoImage,
+            #contactInfoImageBackground,
+            #contactInfoSectionImageBackground {
+                position: absolute;
+            }
+
+            #contactInfoImage {
+                z-index: 4;
+            }
+
+            #contactInfoImageBackground {
+                z-index: 3;
+                top: 265px;
+            }
+
+            #contactInfoSectionImageBackground {
+                z-index: 2;
+                left: 300px;
+            }
+        }
+    }
+
+    .contactInfoTextContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding-top: 100px;
+        max-width: 400px;
+
+
+        @include tablet {
+            align-items: start;
+            text-align: left;
+            padding-top: 200px;
+            margin-left: 35rem;
+        }
+
+        .contactInfoTextBox {
+            margin: 20px 0px 50px 0px;
+
+            i {
+                margin-right: 10px;
+                color: var(--color-secondary);
+            }
+
+            p {
+                @include tablet {
+                    margin-left: 25px;
+                }
+            }
+        }
+    }
+}

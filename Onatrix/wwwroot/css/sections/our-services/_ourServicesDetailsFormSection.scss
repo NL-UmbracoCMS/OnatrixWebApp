@@ -1,0 +1,93 @@
+﻿#serviceDetailsFormSection {
+    margin-top: 20px;
+
+    @include tablet {
+        padding-left: 50px;
+    }
+
+    @include desktop {
+        padding-left: 150px;
+    }
+
+    .formContainerTitle {
+        margin-left: 20px;
+    }
+
+    form {
+        background-color: var(--color-light);
+        padding: 20px;
+
+        p {
+            color: var(--color-dark);
+        }
+
+        .form-input-group-row1 {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+
+            .nameContainer {
+                width: 100%;
+
+                .form-input-error {
+                    padding: 0px 5px 0px 5px;
+                }
+            }
+
+            .emailContainer {
+                width: 100%;
+
+                .form-input-error {
+                    padding: 0px 5px 0px 5px;
+                }
+            }
+
+            input {
+                width: 100%;
+                padding: 5px;
+                margin-bottom: 5px;
+            }
+
+            #name {
+                margin-right: 5px;
+            }
+
+            #email {
+                margin-left: 5px;
+            }
+        }
+
+        .form-input-group {
+            display: flex;
+            flex-direction: column;
+
+
+            .form-input {
+                padding: 5px;
+            }
+
+            .form-button {
+                @include btn;
+                margin: 5px 0px 5px 0px;
+                background-color: var(--color-primarymain);
+                color: var(--color-accent);
+            }
+        }
+
+        .form-input-group-message {
+            .messageContainer {
+                width: 100%;
+
+                .form-input-error {
+                    padding: 0px 5px 0px 5px;
+                }
+            }
+
+            #message {
+                width: 100%;
+                margin: 10px 0px 10px 0px;
+                padding-bottom: 150px;
+            }
+        }
+    }
+}

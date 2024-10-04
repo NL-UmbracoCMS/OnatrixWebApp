@@ -1,0 +1,27 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+
+@{
+    var sectionTitle = Model?.Content.Value<string>("sectionTitle") ?? "";
+    var tags = Model?.Content.Value<IEnumerable<string>>("tagItemName") ?? Enumerable.Empty<string>();
+}
+
+<div id="tagsSection">
+    <h4>@sectionTitle</h4>
+    
+    @if (tags.Any()) 
+    {
+        <div class="tags">
+            @foreach (var tag in tags) 
+            {
+                <p>@tag</p>
+            }
+        </div>
+    }
+    else 
+    {
+        <p>Inga taggar tillgängliga.</p>
+    }
+</div>

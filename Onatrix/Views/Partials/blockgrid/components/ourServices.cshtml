@@ -1,0 +1,44 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+
+@{
+	var sectionTitle = Model?.Content.Value<string>("sectionTitle") ?? "";
+    var sectionId = sectionTitle?.ToString().ToLower().Trim().Replace(" ", "-");
+	var sectionHeadline = Model?.Content.Value<string>("headline") ?? "";
+
+    var sectionBackgroundColorLabel = Model?.Content?.Value<Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor>("sectionBackgroundColor")?.Label.ToLower() ?? null;
+    var sectionBackgroundColorClass = (!string.IsNullOrEmpty(sectionBackgroundColorLabel) && sectionBackgroundColorLabel != "none") ? $"bg-{sectionBackgroundColorLabel}" : "";
+
+	var selection = Umbraco.Content(Guid.Parse("96dc419c-4d3c-4f7c-905e-b1e48783b1b5"))
+    .ChildrenOfType("serviceItemDetailPage")
+    .Where(x => x.IsVisible()).Take(6);
+}
+
+<section class="@sectionId @sectionBackgroundColorClass">
+	<div class="container">
+		<div class="OurServiceText">
+			<h6>@sectionTitle</h6>
+			<h2>@sectionHeadline</h2>
+		</div>
+			<div class="OurServiceContent">
+				@if (selection != null) 
+				{
+					@foreach (var item in selection)
+					{
+						var serviceDetailImage = item?.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "";
+						var serviceItemText = item?.Value<string>("serviceItemText") ?? "";
+
+						<div class="onatrixServiceBox bg-light">
+							<a href="@item.Url()">
+								<h4>@item.Name()</h4>
+								<img src="@serviceDetailImage" alt="@item.Name()">
+								<p>@serviceItemText</p>
+							</a>
+						</div>							
+					}
+				}
+			</div>
+    </div>
+</section>

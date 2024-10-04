@@ -1,0 +1,12 @@
+﻿#contact-us-map-section {
+    height: 100vh;
+
+    .background-image {
+        display: none;
+
+        @include tablet {
+            display: block;
+            max-width: 100%;
+        }
+    }
+}

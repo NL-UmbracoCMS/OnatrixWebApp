@@ -1,0 +1,45 @@
+#home-about-us-section {
+    position: relative;
+    z-index: 1;
+    padding-top: 50px;
+
+    .container {
+        padding-left: 50px;
+
+        @include tablet {
+            padding-left: 0;
+        }
+
+        .umb-block-grid__layout-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            @include tablet {
+                align-items: start;
+                text-align: left;
+                padding-bottom: 50px;
+                padding-left: 5px;
+                padding-right: 35%;
+            }
+
+            @include desktop {
+            }
+
+            @include ultraWide {
+            }
+
+            img {
+                padding-top: 20px;
+            }
+        }
+
+        blockquote {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            font-style: italic;
+        }
+    }
+}
