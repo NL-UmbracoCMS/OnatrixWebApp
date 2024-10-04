@@ -63,7 +63,7 @@ public class ContactSurfaceController(IUmbracoContextAccessor umbracoContextAcce
 
 		try
 		{
-			var response = await _httpClient.PostAsJsonAsync("https://localhost:7015/api/ClientContact", contactFormModel);
+			var response = await _httpClient.PostAsJsonAsync("https://onatrixwebapi20241004120956.azurewebsites.net/api/ClientContact", contactFormModel);
 
 			if (response.IsSuccessStatusCode)
 			{
