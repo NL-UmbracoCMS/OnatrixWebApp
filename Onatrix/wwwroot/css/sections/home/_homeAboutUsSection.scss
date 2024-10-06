@@ -2,12 +2,12 @@
     position: relative;
     z-index: 1;
     padding-top: 50px;
+    padding-bottom: 50px;
 
     .container {
-        padding-left: 50px;
 
         @include tablet {
-            padding-left: 0;
+            padding-left: 50px;
         }
 
         .umb-block-grid__layout-container {
@@ -29,6 +29,14 @@
             }
 
             @include ultraWide {
+            }
+
+            h2 {
+                font-size: 25px;
+
+                @include tablet {
+                    font-size: 40px;
+                }
             }
 
             img {

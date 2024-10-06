@@ -41,9 +41,16 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding-top: 100px;
+        padding-top: 50px;
         max-width: 400px;
 
+        h2 {
+            font-size: 25px;
+
+            @include tablet {
+                font-size: 40px;
+            }
+        }
 
         @include tablet {
             align-items: start;

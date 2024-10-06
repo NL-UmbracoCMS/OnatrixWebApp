@@ -4,7 +4,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    height: 100vh;
+    margin-top: 50px;
 
     .umb-block-grid__layout-container {
         display: flex;
@@ -29,7 +30,12 @@
             }
 
             img {
-                padding: 50px;
+                max-width: 100%;
+                padding: 10px;
+                
+                @include tablet {
+                    padding: 50px;
+                }
             }
         }
     }

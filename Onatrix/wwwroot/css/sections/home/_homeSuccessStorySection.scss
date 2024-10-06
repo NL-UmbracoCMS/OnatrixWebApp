@@ -17,14 +17,17 @@
 
         .homeSuccessStoryText {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: start;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
             padding: 10px;
 
 
             @include tablet {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: start;
             }
 
             @include desktop {
@@ -36,11 +39,25 @@
         }
 
         .homeSuccessStoryBox {
-            width: 30%;
+            width: 100%;
             padding-bottom: 20px;
 
+            @include tablet {
+                width: 30%;
+            }
+
             h3 {
-                font-size: 70px;
+                font-size: 30px;
+
+                @include tablet {
+                    font-size: 70px;
+                }
+            }
+        }
+
+        .umb-block-grid__layout-item {
+            img {
+                max-width: 100%;
             }
         }
     }

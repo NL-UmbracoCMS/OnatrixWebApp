@@ -12,10 +12,15 @@
 
     @include desktop {
         top: 40rem;
-        margin-left: 70rem;
+        margin-left: 60rem;
         width: 450px;
     }
 
+    @include ultraWide {
+        top: 40rem;
+        margin-left: 80rem;
+        width: 450px;
+    }
 
     .formContainerTitle {
         margin: 20px;

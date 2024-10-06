@@ -1,17 +1,27 @@
 
 #home-showcase-section {
     position: relative;
-    padding: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    @include desktop {
+        padding: 100px;
+    }
 
     .container {
         position: relative;
         z-index: 2;
+        text-align: center;
+
+        @include tablet {
+            text-align: left;
+        }
 
         .umb-block-grid__layout-container {
-            margin-right: 25%;
-            padding-left: 20px;
+
 
             @include tablet {
+                margin-right: 30%;
                 padding: 0;
                 padding-top: 20px;
             }
@@ -23,7 +33,7 @@
 
             h1 {
                 line-height: 50px;
-                font-size: 20px;
+                font-size: 25px;
 
                 @include tablet {
                     font-size: 30px;
@@ -36,7 +46,7 @@
             }
 
             p {
-                padding: 10px 20px 20px 0px;
+                padding-bottom: 20px;
 
                 @include tablet {
                     padding: 10px 20px 20px 0px;
@@ -55,12 +65,17 @@
 
 
     .background-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1; 
-        object-fit: cover;
+        display: none;
+
+        @include tablet {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            object-fit: cover;
+        }
     }
 }

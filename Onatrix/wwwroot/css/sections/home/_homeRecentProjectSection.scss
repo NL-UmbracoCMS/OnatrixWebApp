@@ -18,6 +18,14 @@
             align-self: start;
             margin-left: 400px;
         }
+
+        h2 {
+            font-size: 25px;
+
+            @include tablet {
+                font-size: 40px;
+            }
+        }
     }
 
     .homeOurProjectContent {
@@ -34,6 +42,10 @@
             position: relative;
             z-index: 2;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+            img {
+                max-width: 100%;
+            }
 
             .homeOurProjectIconBox {
                 display: none;
