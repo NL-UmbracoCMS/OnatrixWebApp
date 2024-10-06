@@ -5,7 +5,7 @@
 
 @{
     var buttonLinkText = Model?.Content.Value<string>("buttonLinkText");
-    var buttonLinkUrl = Model?.Content.Value<string>("buttonLinkText");
+    var buttonLinkUrl = Model?.Content.Value<string>("buttonLinkUrl");
     var buttonColor = Model?.Content.Value<ColorPickerValueConverter.PickedColor>("buttonColor")?.Label.ToLower() ?? null;
 }
 
